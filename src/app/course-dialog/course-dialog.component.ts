@@ -21,6 +21,7 @@ import { LoadingService } from "../loading/loading.service";
   templateUrl: "./course-dialog.component.html",
   styleUrls: ["./course-dialog.component.css"],
   standalone: false,
+  providers: [LoadingService],
 })
 export class CourseDialogComponent implements AfterViewInit {
   form: FormGroup;
@@ -42,14 +43,18 @@ export class CourseDialogComponent implements AfterViewInit {
       releasedAt: [moment(), Validators.required],
       longDescription: [course.longDescription, Validators.required],
     });
+
+    // this.loadingService.loadingOn();
   }
 
   ngAfterViewInit() {}
 
   save() {
     const changes = this.form.value;
-    this.coursesService
-      .saveCourse(this.course.id, changes).subscribe((val) => { this.dialogRef.close(val)})
+    const saveCourses$ = this.coursesService.saveCourse(this.course.id, changes);
+      
+    this.loadingService.showLoaderUntilCompleted(saveCourses$)
+      .subscribe((val) => { this.dialogRef.close(val)})
   }
 
   close() {
