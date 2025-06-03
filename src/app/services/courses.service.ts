@@ -15,4 +15,10 @@ export class CoursesService {
       .get<Course[]>("/api/courses")
       .pipe(map((res) => res["payload"]), shareReplay());
   }
+
+  saveCourse(courseId: string, changes: Partial<Course>): Observable<any> {
+    return this.http
+      .put<Course>(`/api/courses/${courseId}`, changes)
+      .pipe(shareReplay());
+  }
 }
