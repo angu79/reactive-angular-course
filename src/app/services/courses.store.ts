@@ -39,6 +39,10 @@ export class CoursesStore {
     .subscribe();
   }
 
+  saveCourse(courseId: string, changes: Partial<Course>): Observable<any> {
+    
+  }
+
   filterByCategory(category: string): Observable<Course[]> {
     return this.courses$.pipe(
       map((courses) =>
