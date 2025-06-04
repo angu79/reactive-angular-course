@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { LoadingService } from "./loading/loading.service";
 import { MessagesService } from "./messages/messages.service";
-import { AuthStore } from "./services/auth.service";
+import { AuthStore } from "./services/auth.store";
 
 @Component({
   selector: "app-root",
