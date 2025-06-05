@@ -1,5 +1,6 @@
 import {
   AfterViewInit,
+  ChangeDetectionStrategy,
   Component,
   ElementRef,
   OnInit,
@@ -42,6 +43,7 @@ interface CourseData {
   templateUrl: "./course.component.html",
   styleUrls: ["./course.component.css"],
   standalone: false,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CourseComponent implements OnInit {
   data$: Observable<CourseData>;
